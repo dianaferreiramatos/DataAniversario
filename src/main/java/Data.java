@@ -1,5 +1,4 @@
 import java.util.Calendar;
-import java.util.Objects;
 
 /**
  * Representa uma data através do dia, mês e ano.
@@ -196,14 +195,11 @@ public class Data implements Comparable<Data> {
      */
     public final void setData(int ano, int mes, int dia) {
         this.ano = ano;
-        this.dia = dia;
-
 
         int numDig = 0;
+        int numDias = 0;
         int num = mes;
 
-        //validacao para que mes nao seja null nem zero
-        char c;
         if (mes < 1 || mes > 12) {
             throw new MesInvalidoException();
         } else {
@@ -216,6 +212,22 @@ public class Data implements Comparable<Data> {
                 throw new MesInvalidoException();
             }
 
+        }
+
+        this.mes = Mes.obterMes(mes);
+
+        if (dia < 1 || dia > 31) {
+            throw new DiaInvalidoException();
+        } else {
+            while (numDias != 0)
+            {
+                numDias ++;
+                num = num / 10;
+            }
+            if (numDias > 2) {
+                throw new DiaInvalidoException();
+            }
+            this.dia = dia;
         }
     }
 
