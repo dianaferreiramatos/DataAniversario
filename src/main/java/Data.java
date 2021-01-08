@@ -226,6 +226,15 @@ public class Data implements Comparable<Data> {
             }
             if (numDias > 2) {
                 throw new DiaInvalidoException();
+            } else if(dia >= 1) {
+                    if (mes == 2 && isAnoBissexto(ano)) {
+                        if (dia > 29) {
+                            throw new DiaInvalidoException();
+                        }
+                    this.dia = dia;
+                } else {
+                    throw new DiaInvalidoException();
+                }
             }
             this.dia = dia;
         }

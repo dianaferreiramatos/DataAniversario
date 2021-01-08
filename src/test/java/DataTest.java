@@ -195,4 +195,21 @@ class DataTest {
         assertTrue(actualMessage.contains(expectedMessage));
     }
 
+    @Test
+    @DisplayName("Teste para verificação das excecoes: dia")
+    public void givenDiaInvalidocheckIfIsMesInvalidoExceptionIsThrowed2() {
+        int ano = 2020;
+        int mes = 2;
+        int dia = 30;
+
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            Data data = new Data(ano, mes,dia);
+        });
+
+        String expectedMessage = "Dia fora dos limites !!!";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
     }
